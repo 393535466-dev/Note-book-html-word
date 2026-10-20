@@ -1,0 +1,4 @@
+interface:
+  display_name: "学习与会议知识整理助手"
+  short_description: "同时生成 HTML 与 Word 学习笔记，用核心表格和自测帮助理解复习"
+  default_prompt: "使用 $knowledge-organizer 整理以下材料，突出重点、减少重复，同时生成内容一致的 HTML 与 Word（.docx），包含核心表格和自测题，HTML 答案折叠，Word 答案分开列出。"

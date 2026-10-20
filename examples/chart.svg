@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="334" viewBox="0 0 960 334" role="img" aria-labelledby="chart-title chart-desc">
+<title id="chart-title">虚构示例：三组待复习知识点数量</title>
+<desc id="chart-desc">单位：个。来源：用于演示图表能力的虚构数据，与真实课程和考试权重无关。核心概念: 4；辅助例子: 3；背景术语: 2</desc>
+<style>text{font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif;fill:#172033} .small{font-size:13px;fill:#64748b}</style>
+<rect width="960" height="334" fill="#ffffff"/>
+<text x="28" y="40" font-size="22" font-weight="600">虚构示例：三组待复习知识点数量</text>
+<text x="28" y="68" class="small">单位：个</text>
+<line x1="260.00" x2="260.00" y1="98" y2="242" stroke="#e2e8f0"/>
+<text x="260.00" y="266" text-anchor="middle" class="small">0</text>
+<line x1="407.50" x2="407.50" y1="98" y2="242" stroke="#e2e8f0"/>
+<text x="407.50" y="266" text-anchor="middle" class="small">1</text>
+<line x1="555.00" x2="555.00" y1="98" y2="242" stroke="#e2e8f0"/>
+<text x="555.00" y="266" text-anchor="middle" class="small">2</text>
+<line x1="702.50" x2="702.50" y1="98" y2="242" stroke="#e2e8f0"/>
+<text x="702.50" y="266" text-anchor="middle" class="small">3</text>
+<line x1="850.00" x2="850.00" y1="98" y2="242" stroke="#e2e8f0"/>
+<text x="850.00" y="266" text-anchor="middle" class="small">4</text>
+<line x1="260.00" x2="260.00" y1="98" y2="242" stroke="#64748b"/>
+<text x="244" y="132" font-size="15" text-anchor="end"><title>核心概念</title>核心概念</text>
+<rect x="260.00" y="110" width="590.00" height="30" fill="#2563eb"><title>核心概念: 4 个</title></rect>
+<text x="866" y="132" font-size="14">4</text>
+<text x="244" y="176" font-size="15" text-anchor="end"><title>辅助例子</title>辅助例子</text>
+<rect x="260.00" y="154" width="442.50" height="30" fill="#2563eb"><title>辅助例子: 3 个</title></rect>
+<text x="866" y="176" font-size="14">3</text>
+<text x="244" y="220" font-size="15" text-anchor="end"><title>背景术语</title>背景术语</text>
+<rect x="260.00" y="198" width="295.00" height="30" fill="#2563eb"><title>背景术语: 2 个</title></rect>
+<text x="866" y="220" font-size="14">2</text>
+<text x="28" y="306" class="small"><title>用于演示图表能力的虚构数据，与真实课程和考试权重无关</title>来源：用于演示图表能力的虚构数据，与真实课程和考试权重无关</text></svg>
