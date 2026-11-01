@@ -68,6 +68,38 @@ def block_html(block):
     return ''.join(parts)
 
 
+
+def rich_items(value, field):
+    if not isinstance(value, list):
+        raise ValueError(f'{field} must be a list')
+    out = []
+    for item in value:
+        if isinstance(item, str):
+            out.append(item)
+        elif isinstance(item, dict):
+            title = item.get('title') or item.get('label') or item.get('name')
+            text = item.get('text') or item.get('content') or item.get('detail')
+            if title and text:
+                out.append(f'{title}：{text}')
+            elif title:
+                out.append(str(title))
+            elif text:
+                out.append(str(text))
+            else:
+                raise ValueError(f'{field} item must contain title or text')
+        else:
+            raise ValueError(f'{field} item must be a string or object')
+    return out
+
+
+def optional_list_section(parts, title, value, field, css_class=''):
+    items = rich_items(value, field)
+    if items:
+        class_attr = f' class="{css_class}"' if css_class else ''
+        parts.append(f'<section{class_attr}><h2>{html.escape(title)}</h2><ul>')
+        parts.extend('<li>' + esc(item) + '</li>' for item in items)
+        parts.append('</ul></section>')
+
 def render_notes(data):
     if not isinstance(data, dict):
         raise ValueError('notes must be an object')
@@ -86,6 +118,9 @@ def render_notes(data):
     if highlights:
         parts.append('<section><h2>先记住这几件事</h2><ul class="highlights">'
                      + ''.join('<li>' + esc(i) + '</li>' for i in highlights) + '</ul></section>')
+    optional_list_section(parts, '必备知识点', data.get('must_know', []), 'must_know', 'must-know')
+    optional_list_section(parts, '实例', data.get('examples', []), 'examples', 'examples')
+    optional_list_section(parts, '可视化记忆', data.get('visual_memory', []), 'visual_memory', 'visual-memory')
     navigation = []
     rendered = []
     for i, section in enumerate(sections, 1):
@@ -94,6 +129,10 @@ def render_notes(data):
         rendered.append(f'<section id="section-{i}"><h2>' + esc(heading) + '</h2>' + block_html(section) + '</section>')
     parts.append('<nav aria-label="笔记目录">' + ''.join(navigation) + '</nav>')
     parts.extend(rendered)
+    optional_list_section(parts, '纠错', data.get('corrections', []), 'corrections')
+    optional_list_section(parts, '补充知识', data.get('supplements', []), 'supplements')
+    optional_list_section(parts, '本次调整与补充', data.get('change_log', []), 'change_log')
+    optional_list_section(parts, '待核实', data.get('uncertain_items', []), 'uncertain_items')
     questions = data.get('questions', [])
     if not isinstance(questions, list):
         raise ValueError('questions must be a list')
