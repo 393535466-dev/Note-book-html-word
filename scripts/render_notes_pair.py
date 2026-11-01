@@ -79,6 +79,25 @@ def build_docx(data, cjk_font=None):
             p.add_run(f'{index}. ' if ordered else '• ')
             p.add_run(text)
 
+
+
+    def rich_text(value):
+        if isinstance(value, str):
+            return value
+        if isinstance(value, dict):
+            title = value.get('title') or value.get('label') or value.get('name')
+            text = value.get('text') or value.get('content') or value.get('detail')
+            if title and text:
+                return f'{title}：{text}'
+            return str(title or text or '')
+        return str(value)
+
+    def add_optional_list(title, value):
+        if not value:
+            return
+        doc.add_heading(title, 1)
+        list_items([rich_text(item) for item in value])
+
     def add_table(value):
         columns = value['columns']
         count = len(columns)
@@ -153,6 +172,13 @@ def build_docx(data, cjk_font=None):
     if data.get('highlights'):
         doc.add_heading('重点速览', 1)
         list_items(data['highlights'])
+    add_optional_list('必备知识点', data.get('must_know', []))
+    add_optional_list('实例', data.get('examples', []))
+    add_optional_list('可视化记忆', data.get('visual_memory', []))
+    add_optional_list('纠错', data.get('corrections', []))
+    add_optional_list('补充知识', data.get('supplements', []))
+    add_optional_list('本次调整与补充', data.get('change_log', []))
+    add_optional_list('待核实', data.get('uncertain_items', []))
     for block in data['sections']:
         doc.add_heading(block['title'], 1)
         add_block(block)
