@@ -175,10 +175,6 @@ def build_docx(data, cjk_font=None):
     add_optional_list('必备知识点', data.get('must_know', []))
     add_optional_list('实例', data.get('examples', []))
     add_optional_list('可视化记忆', data.get('visual_memory', []))
-    add_optional_list('纠错', data.get('corrections', []))
-    add_optional_list('补充知识', data.get('supplements', []))
-    add_optional_list('本次调整与补充', data.get('change_log', []))
-    add_optional_list('待核实', data.get('uncertain_items', []))
     for block in data['sections']:
         doc.add_heading(block['title'], 1)
         add_block(block)
@@ -188,6 +184,11 @@ def build_docx(data, cjk_font=None):
         doc.add_heading('参考答案', 1)
         for i, q in enumerate(data['questions'], 1):
             doc.add_paragraph(f'{i}. {q["answer"]}')
+    # 与 HTML 区块顺序保持一致：正文与自测之后才是纠错、补充、待核实与本次调整。
+    add_optional_list('纠错', data.get('corrections', []))
+    add_optional_list('补充知识', data.get('supplements', []))
+    add_optional_list('本次调整与补充', data.get('change_log', []))
+    add_optional_list('待核实', data.get('uncertain_items', []))
     for block in data.get('appendices', []):
         doc.add_heading(block['title'], 1)
         add_block(block)
